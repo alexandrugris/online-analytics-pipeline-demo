@@ -1,0 +1,16 @@
+{
+  "name": "naivedataproducer",
+  "version": "1.0.0",
+  "description": "NaiveDataProducer - random walk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Alexandru Gris",
+  "license": "ISC",
+  "dependencies": {
+    "random": "^2.0.12",
+    "socket.io": "^2.1.1"
+  }
+}
