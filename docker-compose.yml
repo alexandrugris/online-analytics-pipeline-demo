@@ -16,7 +16,21 @@ services:
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+      # uncomment if running a single node
+      # - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+  kafka_1:
+    image: "confluentinc/cp-kafka"
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_1:9092
+
+  kafka_2:
+    image: "confluentinc/cp-kafka"
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_2:9092
 
   kafka_rest:
     image: "confluentinc/cp-kafka-rest"
