@@ -1,8 +1,8 @@
 #!/usr/local/bin/node
 
-let child_process = require('child_process');
+const child_process = require('child_process');
 
-let cmds = {
+const cmds = {
     'topics' : ['kafka-topics', '--zookeeper', 'zookeeper:2181'],
     'produce' : ['kafka-console-producer', '--broker-list', 'kafka:9092'],
     'consume' : ['kafka-console-consumer', '--bootstrap-server', 'kafka:9092']
@@ -24,7 +24,7 @@ process.argv.forEach((arg) => {
     }
 });
 
-let docker = child_process.spawn('docker', params, {stdio: 'inherit'});
+const docker = child_process.spawn('docker', params, {stdio: 'inherit'});
 
 docker.on('error', (err) => {
     console.log('Failed to start docker');

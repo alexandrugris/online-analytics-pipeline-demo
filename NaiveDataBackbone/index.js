@@ -1,21 +1,21 @@
-let socket = require('socket.io-client')('http://localhost:8080');
+const socket = require('socket.io-client')('http://localhost:8080');
 
-let processor = function(){
+const processor = function(){
 
     let values = [];
     let sigma   = null;
     let avg = null;
 
     return {
-        append : function(v){
+        append(v){
             values.push(v);
         },
 
-        clear : function(){
+        clear(){
             values = [];
         },
 
-        processAndReset : function(){
+        processAndReset(){
             avg = 0;
             values.forEach(v => {
                 avg += v / values.length; // avoid overflow
@@ -28,7 +28,7 @@ let processor = function(){
             return avg;
         },
 
-        isAnomaly : function(v){
+        isAnomaly(v){
             if(sigma == null)
                 return false;
             return Math.abs(v - avg) > 4 * sigma;

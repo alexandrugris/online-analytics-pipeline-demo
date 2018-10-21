@@ -1,7 +1,7 @@
 
-let app = require('http').createServer( (req, resp) => {});
-let io = require('socket.io')(app);
-let rnd = require('random');
+const app = require('http').createServer( (req, resp) => {});
+const io = require('socket.io')(app);
+const rnd = require('random');
 
 let cron = null;
 let connectedClients = 0;
