@@ -14,4 +14,3 @@ SELECT Foo, SUM(Number) / COUNT(*) as Average From RandomWalk_WA WINDOW TUMBLING
 
 
 
-
