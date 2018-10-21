@@ -1,0 +1,15 @@
+{
+  "name": "kafkadataproducer",
+  "version": "1.0.0",
+  "description": "Produces data to Kafka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Alexandru Gris",
+  "license": "ISC",
+  "dependencies": {
+    "kafka-rest": "0.0.5"
+  }
+}
