@@ -13,33 +13,53 @@ services:
 
   kafka:
     image: "confluentinc/cp-kafka"
+    depends_on:
+      - zookeeper
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
 
-      # uncomment if running a single node
-      # - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      # comment if running a multiple nodes
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
-  kafka_1:
-    image: "confluentinc/cp-kafka"
-    environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_1:9092
+# uncomment below to start multiple kafka nodes
 
-  kafka_2:
-    image: "confluentinc/cp-kafka"
-    environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_2:9092
+#  kafka_1:
+#    image: "confluentinc/cp-kafka"
+#    depends_on:
+#      - zookeeper
+#    environment:
+#      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+#      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_1:9092
+
+#  kafka_2:
+#    image: "confluentinc/cp-kafka"
+#    depends_on:
+#      - zookeeper
+#    environment:
+#      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+#      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka_2:9092
 
   kafka_rest:
     image: "confluentinc/cp-kafka-rest"
     ports:
       - "8082:8082"
+    depends_on:
+      - zookeeper
+      - kafka
     environment: 
       - KAFKA_REST_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_REST_LISTENERS=http://0.0.0.0:8082
       - KAFKA_REST_HOST_NAME=kafka_rest
+
+  ksql_server:
+    image: "confluentinc/cp-ksql-server"
+    depends_on:
+      - kafka_rest
+    environment:
+      - KSQL_BOOTSTRAP_SERVERS=kafka:9092
+      - KSQL_LISTENERS=http://0.0.0.0:8088/
+      - KSQL_KSQL_SERVICE_ID=ksqlserver
 
 networks:
   default:

@@ -3,7 +3,7 @@ const KafkaRest = require('kafka-rest');
 const kafka = new KafkaRest({ 'url': 'http://localhost:8082' });
 
 // make sure the topic is created before
-const target = kafka.topic('my_producer');
+const target = kafka.topic('RandomWalkSrc');
 
 const randWalker = function(){
 

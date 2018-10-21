@@ -4,9 +4,7 @@
   "description": "Produces data to Kafka",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "produce": "node producer.js",
-    "consume": "node consume.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alexandru Gris",
   "license": "ISC",
