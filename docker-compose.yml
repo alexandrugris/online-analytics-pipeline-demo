@@ -6,13 +6,16 @@ version : '3.5'
 # docker run --net=oda --rm confluentinc/cp-kafka kafka-console-consumer --bootstrap-server kafka:9092 --topic foo --from-beginning --max-messages 42
 
 services:
+
   zookeeper:
     image: "confluentinc/cp-zookeeper"
+    restart: always
     environment:
       - ZOOKEEPER_CLIENT_PORT=2181 
 
   kafka:
     image: "confluentinc/cp-kafka"
+    restart: always
     depends_on:
       - zookeeper
     environment:
@@ -42,6 +45,7 @@ services:
 
   kafka_rest:
     image: "confluentinc/cp-kafka-rest"
+    restart: always
     ports:
       - "8082:8082"
     depends_on:
@@ -54,12 +58,41 @@ services:
 
   ksql_server:
     image: "confluentinc/cp-ksql-server"
+    restart: always
     depends_on:
       - kafka_rest
     environment:
       - KSQL_BOOTSTRAP_SERVERS=kafka:9092
       - KSQL_LISTENERS=http://0.0.0.0:8088/
       - KSQL_KSQL_SERVICE_ID=ksqlserver
+
+  nimbus:
+    image: storm
+    command: storm nimbus
+    depends_on:
+      - zookeeper
+    restart: always
+    ports:
+      - 6627:6627
+
+  supervisor:
+    image: storm
+    command: storm supervisor
+    depends_on:
+      - nimbus
+      - zookeeper
+    restart: always
+
+  stormui:
+    image: storm
+    command: storm ui
+    depends_on:
+      - nimbus
+      - zookeeper
+    restart: always
+    ports:
+      - "8080:8080"
+
 
 networks:
   default:
