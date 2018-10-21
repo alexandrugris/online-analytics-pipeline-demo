@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "produce": "node producer.js",
+    "consume": "node consume.js"
   },
   "author": "Alexandru Gris",
   "license": "ISC",
   "dependencies": {
-    "kafka-rest": "0.0.5"
+    "kafka-rest": "0.0.5",
+    "random": "^2.0.12"
   }
 }

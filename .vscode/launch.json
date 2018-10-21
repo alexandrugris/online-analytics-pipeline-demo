@@ -22,7 +22,14 @@
             "type": "node",
             "request": "launch",
             "name": "Kafka Producer",
-            "program": "${workspaceFolder}/KafkaProducer/index.js"
+            "program": "${workspaceFolder}/KafkaProducer/producer.js"
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Kafka Consumer",
+            "program": "${workspaceFolder}/KafkaProducer/consumer.js"
         }
 
 

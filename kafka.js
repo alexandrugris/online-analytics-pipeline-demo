@@ -24,12 +24,17 @@ process.argv.forEach((arg) => {
     }
 });
 
-const docker = child_process.spawn('docker', params, {stdio: 'inherit'});
+if (params != null){
+    const docker = child_process.spawn('docker', params, {stdio: 'inherit'});
 
-docker.on('error', (err) => {
-    console.log('Failed to start docker');
-});
+    docker.on('error', (err) => {
+        console.log('Failed to start docker');
+    });
 
-docker.on('close', (code) => {
-    console.log(`Child process exited with code ${code}`);
-});
+    docker.on('close', (code) => {
+        console.log(`Child process exited with code ${code}`);
+    });
+}
+else {
+    console.log("Invalid parameters." );
+}
