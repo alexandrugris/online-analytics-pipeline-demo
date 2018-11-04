@@ -5,15 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "java",
-            "name": "CodeLens (Launch) - StormGenericTopology",
+            "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-            "mainClass": "alexandrugris.StormGenericTopology",
-            "args": "",
-            "projectName": "storm-topology"
+            "name": "Launch Resilient",
+            "program": "${workspaceFolder}/ResilientConsumer/consumer.js"
         },
         {
             "type": "node",

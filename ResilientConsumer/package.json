@@ -1,0 +1,15 @@
+{
+  "name": "resilientconsumer",
+  "version": "1.0.0",
+  "description": "Clustered Consumer which builds its state from Kafka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandru Gris",
+  "license": "ISC",
+  "dependencies": {
+    "kafka-rest": "0.0.5",
+    "uuid": "^3.3.2"
+  }
+}
